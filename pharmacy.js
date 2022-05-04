@@ -8,6 +8,10 @@ export class Drug {
   hasExpired() {
     return this.expiresIn < 0;
   }
+
+  increaseBenefitBy(count) {
+    this.benefit = Math.min(50, this.benefit + count);
+  }
 }
 
 export class Pharmacy {
@@ -29,11 +33,11 @@ export class Pharmacy {
 
     if (drug.name == "Herbal Tea") {
       if (drug.hasExpired()) {
-        drug.benefit = Math.min(50, drug.benefit + 2);
+        drug.increaseBenefitBy(2);
         return drug;
       }
 
-      drug.benefit = Math.min(50, drug.benefit + 1);
+      drug.increaseBenefitBy(1);
       return drug;
     }
 
@@ -44,12 +48,12 @@ export class Pharmacy {
       }
 
       if (drug.expiresIn <= 5) {
-        drug.benefit = Math.min(50, drug.benefit + 3);
+        drug.increaseBenefitBy(3);
         return drug;
       }
 
       if (drug.expiresIn <= 10) {
-        drug.benefit = Math.min(50, drug.benefit + 2);
+        drug.increaseBenefitBy(2);
         return drug;
       }
     }

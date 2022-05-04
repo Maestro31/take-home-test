@@ -12,6 +12,10 @@ export class Drug {
   increaseBenefitBy(count) {
     this.benefit = Math.min(50, this.benefit + count);
   }
+
+  decreaseBenefitBy(count) {
+    this.benefit = Math.max(0, this.benefit - count);
+  }
 }
 
 export class Pharmacy {
@@ -59,10 +63,10 @@ export class Pharmacy {
     }
 
     if (drug.hasExpired()) {
-      drug.benefit = Math.max(0, drug.benefit - 2);
+      drug.decreaseBenefitBy(2);
       return drug;
     }
 
-    drug.benefit = Math.max(0, drug.benefit - 1);
+    drug.decreaseBenefitBy(1);
   }
 }

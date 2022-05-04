@@ -22,23 +22,16 @@ export class Pharmacy {
     }
 
     if (drug.name != "Herbal Tea" && drug.name != "Fervex") {
-      if (drug.benefit > 0) {
-        drug.benefit--;
-      }
+      drug.benefit = Math.max(0, drug.benefit - 1);
     } else {
-      if (drug.benefit < 50) {
-        drug.benefit++;
-        if (drug.name == "Fervex") {
-          if (drug.expiresIn < 11) {
-            if (drug.benefit < 50) {
-              drug.benefit++;
-            }
-          }
-          if (drug.expiresIn < 6) {
-            if (drug.benefit < 50) {
-              drug.benefit++;
-            }
-          }
+      drug.benefit = Math.min(50, drug.benefit + 1);
+
+      if (drug.name == "Fervex") {
+        if (drug.expiresIn < 11) {
+          drug.benefit = Math.min(50, drug.benefit + 1);
+        }
+        if (drug.expiresIn < 6) {
+          drug.benefit = Math.min(50, drug.benefit + 1);
         }
       }
     }
@@ -48,16 +41,12 @@ export class Pharmacy {
     if (drug.expiresIn < 0) {
       if (drug.name != "Herbal Tea") {
         if (drug.name != "Fervex") {
-          if (drug.benefit > 0) {
-            drug.benefit--;
-          }
+          drug.benefit = Math.max(0, drug.benefit - 1);
         } else {
           drug.benefit = 0;
         }
       } else {
-        if (drug.benefit < 50) {
-          drug.benefit++;
-        }
+        drug.benefit = Math.min(50, drug.benefit + 1);
       }
     }
   }

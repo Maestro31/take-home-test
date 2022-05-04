@@ -18,6 +18,22 @@ export class Drug {
   }
 }
 
+class MagicPillDegradationByDay {
+  apply(drug) {
+    return drug;
+  }
+}
+
+const strategies = {
+  "Magic Pill": new MagicPillDegradationByDay()
+};
+class DrugDegradationByDay {
+  apply(drug) {
+    const strategy = strategies[drug.name];
+    return strategy.apply(drug);
+  }
+}
+
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
@@ -30,7 +46,7 @@ export class Pharmacy {
 
   updateDrug(drug) {
     if (drug.name == "Magic Pill") {
-      return drug;
+      return new DrugDegradationByDay().apply(drug);
     }
 
     if (drug.name == "Herbal Tea") {

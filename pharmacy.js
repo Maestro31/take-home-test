@@ -4,6 +4,10 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+  hasExpired() {
+    return this.expiresIn < 0;
+  }
 }
 
 export class Pharmacy {
@@ -24,7 +28,7 @@ export class Pharmacy {
     drug.expiresIn--;
 
     if (drug.name == "Herbal Tea") {
-      if (drug.expiresIn < 0) {
+      if (drug.hasExpired()) {
         drug.benefit = Math.min(50, drug.benefit + 2);
         return drug;
       }
@@ -34,7 +38,7 @@ export class Pharmacy {
     }
 
     if (drug.name == "Fervex") {
-      if (drug.expiresIn < 0) {
+      if (drug.hasExpired()) {
         drug.benefit = 0;
         return drug;
       }
@@ -50,7 +54,7 @@ export class Pharmacy {
       }
     }
 
-    if (drug.expiresIn < 0) {
+    if (drug.hasExpired()) {
       drug.benefit = Math.max(0, drug.benefit - 2);
       return drug;
     }

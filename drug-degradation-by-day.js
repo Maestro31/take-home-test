@@ -1,5 +1,6 @@
 import { MagicPillDegradationByDay } from "./drug-strategies/magic-pill-degradation-by-day";
 import { FervexDegradationByDay } from "./drug-strategies/fervex-degradation-by-day";
+import { HerbalTeaDegradationByDay } from "./drug-strategies/herbal-tea-degradation-by-day";
 
 class DefaultDegradationByDay {
   apply(drug) {
@@ -11,20 +12,6 @@ class DefaultDegradationByDay {
     }
 
     drug.decreaseBenefitBy(1);
-  }
-}
-
-class HerbalTeaDegradationByDay {
-  apply(drug) {
-    drug.expiresIn--;
-
-    if (drug.hasExpired()) {
-      drug.increaseBenefitBy(2);
-      return drug;
-    }
-
-    drug.increaseBenefitBy(1);
-    return drug;
   }
 }
 

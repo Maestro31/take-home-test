@@ -24,8 +24,23 @@ class MagicPillDegradationByDay {
   }
 }
 
+class HerbalTeaDegradationByDay {
+  apply(drug) {
+    drug.expiresIn--;
+
+    if (drug.hasExpired()) {
+      drug.increaseBenefitBy(2);
+      return drug;
+    }
+
+    drug.increaseBenefitBy(1);
+    return drug;
+  }
+}
+
 const strategies = {
-  "Magic Pill": new MagicPillDegradationByDay()
+  "Magic Pill": new MagicPillDegradationByDay(),
+  "Herbal Tea": new HerbalTeaDegradationByDay()
 };
 class DrugDegradationByDay {
   apply(drug) {
@@ -50,15 +65,7 @@ export class Pharmacy {
     }
 
     if (drug.name == "Herbal Tea") {
-      drug.expiresIn--;
-
-      if (drug.hasExpired()) {
-        drug.increaseBenefitBy(2);
-        return drug;
-      }
-
-      drug.increaseBenefitBy(1);
-      return drug;
+      return new DrugDegradationByDay().apply(drug);
     }
 
     if (drug.name == "Fervex") {

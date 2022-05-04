@@ -95,11 +95,7 @@ export class Pharmacy {
   }
 
   updateBenefitValue() {
-    this.drugs.forEach(this.updateDrug.bind(this));
+    this.drugs.forEach(drug => new DrugDegradationByDay().apply(drug));
     return this.drugs;
-  }
-
-  updateDrug(drug) {
-    return new DrugDegradationByDay().apply(drug);
   }
 }

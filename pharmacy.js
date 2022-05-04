@@ -100,18 +100,6 @@ export class Pharmacy {
   }
 
   updateDrug(drug) {
-    if (drug.name == "Magic Pill") {
-      return new DrugDegradationByDay().apply(drug);
-    }
-
-    if (drug.name == "Herbal Tea") {
-      return new DrugDegradationByDay().apply(drug);
-    }
-
-    if (drug.name == "Fervex") {
-      return new DrugDegradationByDay().apply(drug);
-    }
-
     return new DrugDegradationByDay().apply(drug);
   }
 }

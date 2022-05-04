@@ -19,6 +19,7 @@ export class Drug {
     this.benefit = Math.max(0, this.benefit - count);
   }
 }
+
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;

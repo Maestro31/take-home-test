@@ -18,6 +18,19 @@ export class Drug {
   }
 }
 
+class DefaultDegradationByDay {
+  apply(drug) {
+    drug.expiresIn--;
+
+    if (drug.hasExpired()) {
+      drug.decreaseBenefitBy(2);
+      return drug;
+    }
+
+    drug.decreaseBenefitBy(1);
+  }
+}
+
 class MagicPillDegradationByDay {
   apply(drug) {
     return drug;
@@ -67,6 +80,11 @@ const strategies = {
 class DrugDegradationByDay {
   apply(drug) {
     const strategy = strategies[drug.name];
+
+    if (!strategy) {
+      return new DefaultDegradationByDay().apply(drug);
+    }
+
     return strategy.apply(drug);
   }
 }
@@ -94,13 +112,6 @@ export class Pharmacy {
       return new DrugDegradationByDay().apply(drug);
     }
 
-    drug.expiresIn--;
-
-    if (drug.hasExpired()) {
-      drug.decreaseBenefitBy(2);
-      return drug;
-    }
-
-    drug.decreaseBenefitBy(1);
+    return new DrugDegradationByDay().apply(drug);
   }
 }

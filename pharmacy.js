@@ -41,13 +41,14 @@ export class Pharmacy {
     if (drug.expiresIn < 0) {
       if (drug.name == "Herbal Tea") {
         drug.benefit = Math.min(50, drug.benefit + 1);
-      } else {
-        if (drug.name == "Fervex") {
-          drug.benefit = 0;
-        } else {
-          drug.benefit = Math.max(0, drug.benefit - 1);
-        }
+        return drug;
       }
+      if (drug.name == "Fervex") {
+        drug.benefit = 0;
+        return drug;
+      }
+
+      drug.benefit = Math.max(0, drug.benefit - 1);
     }
   }
 }

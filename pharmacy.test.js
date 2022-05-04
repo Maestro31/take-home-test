@@ -6,4 +6,12 @@ describe("Pharmacy", () => {
       [new Drug("test", 1, 2)]
     );
   });
+
+  describe("with Dafalgan", () => {
+    it("should decrease twice as fase the benefit", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 2, 3)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", 1, 1)]);
+    });
+  });
 });

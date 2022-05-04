@@ -1,13 +1,9 @@
 import fs from "fs";
-import path from "path";
-import { Drug, Pharmacy } from "../pharmacy";
+import { Drug, Pharmacy } from "./pharmacy";
 
 describe("Gloden test", () => {
   it("output should be the same", () => {
-    const data = fs.readFileSync(
-      path.join(__dirname, "../output.txt"),
-      "utf-8"
-    );
+    const data = fs.readFileSync("./output.txt", "utf-8");
 
     const originalOutput = JSON.parse(`[${data}]`);
 

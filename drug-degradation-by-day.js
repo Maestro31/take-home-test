@@ -1,3 +1,5 @@
+import { MagicPillDegradationByDay } from "./drug-strategies/magic-pill-degradation-by-day";
+
 class DefaultDegradationByDay {
   apply(drug) {
     drug.expiresIn--;
@@ -8,12 +10,6 @@ class DefaultDegradationByDay {
     }
 
     drug.decreaseBenefitBy(1);
-  }
-}
-
-class MagicPillDegradationByDay {
-  apply(drug) {
-    return drug;
   }
 }
 

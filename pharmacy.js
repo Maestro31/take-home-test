@@ -27,16 +27,16 @@ export class Pharmacy {
       drug.benefit = Math.min(50, drug.benefit + 1);
 
       if (drug.name == "Fervex") {
-        if (drug.expiresIn < 11) {
+        if (drug.expiresIn <= 10) {
           drug.benefit = Math.min(50, drug.benefit + 1);
         }
-        if (drug.expiresIn < 6) {
+        if (drug.expiresIn <= 5) {
           drug.benefit = Math.min(50, drug.benefit + 1);
         }
       }
     }
 
-    drug.expiresIn = drug.expiresIn - 1;
+    drug.expiresIn--;
 
     if (drug.expiresIn < 0) {
       if (drug.name != "Herbal Tea") {

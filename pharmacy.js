@@ -17,11 +17,13 @@ export class Pharmacy {
   }
 
   updateDrug(drug) {
+    if (drug.name == "Magic Pill") {
+      return drug;
+    }
+
     if (drug.name != "Herbal Tea" && drug.name != "Fervex") {
       if (drug.benefit > 0) {
-        if (drug.name != "Magic Pill") {
-          drug.benefit--;
-        }
+        drug.benefit--;
       }
     } else {
       if (drug.benefit < 50) {
@@ -40,16 +42,14 @@ export class Pharmacy {
         }
       }
     }
-    if (drug.name != "Magic Pill") {
-      drug.expiresIn = drug.expiresIn - 1;
-    }
+
+    drug.expiresIn = drug.expiresIn - 1;
+
     if (drug.expiresIn < 0) {
       if (drug.name != "Herbal Tea") {
         if (drug.name != "Fervex") {
           if (drug.benefit > 0) {
-            if (drug.name != "Magic Pill") {
-              drug.benefit--;
-            }
+            drug.benefit--;
           }
         } else {
           drug.benefit = 0;
